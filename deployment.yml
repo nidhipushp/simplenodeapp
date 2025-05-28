@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: node-app
+  template:
+    metadata:
+      labels:
+        app: node-app
+    spec:
+      containers:
+        - name: node-app
+          image: 024848453953.dkr.ecr.ap-southeast-2.amazonaws.com/ecr-repo-simplenodeapp:latest
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: ecr-registry-secret
